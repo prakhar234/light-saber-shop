@@ -1,0 +1,8 @@
+.saber {
+  margin-top: 10px;
+  & > div {
+    span:first-of-type {
+      font-weight: bold;
+    }
+  }
+}

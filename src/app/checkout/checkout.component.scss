@@ -1,0 +1,15 @@
+.checkout {
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &-detail {
+    display: flex;
+    justify-content: space-between;
+
+    h5 {
+      font-weight: 700;
+    }
+  }
+}

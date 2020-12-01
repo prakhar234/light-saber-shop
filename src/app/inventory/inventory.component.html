@@ -1,0 +1,252 @@
+<div class="inventory">
+    <h3>Sabers Inventory</h3>
+    <hr />
+    <button *ngIf="!editMode && !addMode" type="button" class="btn btn-primary" (click)="switchToAddMode()">Add Saber</button>
+    <div *ngIf="addMode">
+        <form #addSaberForm="ngForm" class="form" (submit)="onAddSaber()">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="saberName">Saber Name</label>
+                        <input 
+                            type="text" 
+                            id="saberName" 
+                            class="form-control"
+                            ngModel
+                            name="saberName"
+                            #saberName="ngModel"
+                            required />
+                        <p class="error-message" *ngIf="saberName.touched && saberName.errors?.required">Please enter saber name!</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="available">Available</label>
+                        <input 
+                            type="number" 
+                            id="available" 
+                            class="form-control"
+                            ngModel
+                            name="available"
+                            #available="ngModel"
+                            required />
+                        <p class="error-message" *ngIf="available.touched && available.errors?.required">Please enter number of sabers available!</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="crystalName">Crystal Name</label>
+                        <input 
+                            type="text" 
+                            id="crystalName" 
+                            class="form-control"
+                            ngModel
+                            name="crystalName"
+                            #crystalName="ngModel"
+                            required />
+                        <p class="error-message" *ngIf="crystalName.touched && crystalName.errors?.required">Please enter crystal name!</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="crystalColor">Crystal Color</label>
+                        <input 
+                            type="text" 
+                            id="crystalColor" 
+                            class="form-control"
+                            ngModel
+                            name="crystalColor"
+                            #crystalColor="ngModel"
+                            required />
+                        <p class="error-message" *ngIf="crystalColor.touched && crystalColor.errors?.required">Please enter crystal color!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="power">Power Usage</label>
+                        <input 
+                            type="text" 
+                            id="power" 
+                            class="form-control"
+                            ngModel
+                            name="power"
+                            #power="ngModel"
+                            required />
+                        <p class="error-message" *ngIf="power.touched && power.errors?.required">Please enter power usage of saber!</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="planet">Planet Name</label>
+                        <input 
+                            type="text" 
+                            id="planet" 
+                            class="form-control"
+                            ngModel
+                            name="planet"
+                            #planet="ngModel"
+                            required />
+                        <p class="error-message" *ngIf="planet.touched && planet.errors?.required">Please enter planet where the crystal is found!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="addSaberError">
+                <div class="col-xs-12 col-sm-4">
+                    <p class="error-message">Please enter all the required details!</p>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-xs-12 button-container">
+                    <button type="submit" class="btn btn-default" (click)="cancelAdd()">Cancel</button>
+                    <button *ngIf="addSaberForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
+                    <button *ngIf="addSaberForm.form.invalid" [disabled]="addSaberForm.form.invalid" type="submit" class="btn btn-disabled">Submit</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div *ngIf="editMode">
+        <h4>Edit Saber:</h4>
+        <form #editSaberForm="ngForm" class="form" (submit)="onEditSaber()">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="saberName">Saber Name</label>
+                        <input 
+                            type="text" 
+                            id="saberName" 
+                            class="form-control"
+                            ngModel
+                            name="saberName"
+                            [(ngModel)]="saberToEdit.name"
+                            #saberName="ngModel"
+                            required />
+                        <p class="error-message" *ngIf="saberName.touched && saberName.errors?.required">Please enter saber name!</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="available">Available</label>
+                        <input 
+                            type="number" 
+                            id="available" 
+                            class="form-control"
+                            ngModel
+                            name="available"
+                            [(ngModel)]="saberToEdit.available"
+                            #available="ngModel"
+                            required />
+                        <p class="error-message" *ngIf="available.touched && available.errors?.required">Please enter number of sabers available!</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="crystalName">Crystal Name</label>
+                        <input 
+                            type="text" 
+                            id="crystalName" 
+                            class="form-control"
+                            ngModel
+                            name="crystalName"
+                            [(ngModel)]="saberToEdit.crystal.name"
+                            #crystalName="ngModel"
+                            required />
+                        <p class="error-message" *ngIf="crystalName.touched && crystalName.errors?.required">Please enter crystal name!</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="crystalColor">Crystal Color</label>
+                        <input 
+                            type="text" 
+                            id="crystalColor" 
+                            class="form-control"
+                            ngModel
+                            name="crystalColor"
+                            [(ngModel)]="saberToEdit.crystal.color"
+                            #crystalColor="ngModel"
+                            required />
+                        <p class="error-message" *ngIf="crystalColor.touched && crystalColor.errors?.required">Please enter crystal color!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="power">Power Usage</label>
+                        <input 
+                            type="text" 
+                            id="power" 
+                            class="form-control"
+                            ngModel
+                            name="power"
+                            [(ngModel)]="saberToEdit.crystal.powerUsage"
+                            #power="ngModel"
+                            required />
+                        <p class="error-message" *ngIf="power.touched && power.errors?.required">Please enter power usage of saber!</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6">
+                    <div class="form-group">
+                        <label for="planet">Planet Name</label>
+                        <input 
+                            type="text" 
+                            id="planet" 
+                            class="form-control"
+                            ngModel
+                            name="planet"
+                            [(ngModel)]="saberToEdit.crystal.planet"
+                            #planet="ngModel"
+                            required />
+                        <p class="error-message" *ngIf="planet.touched && planet.errors?.required">Please enter planet where the crystal is found!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="addSaberError">
+                <div class="col-xs-12 col-sm-4">
+                    <p class="error-message">Please enter all the required details!</p>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-xs-12 button-container">
+                    <button type="button" class="btn btn-default" (click)="cancelEdit()">Cancel</button>
+                    <button *ngIf="editSaberForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
+                    <button *ngIf="editSaberForm.form.invalid" [disabled]="editSaberForm.form.invalid" type="submit" class="btn btn-disabled">Submit</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <div *ngIf="!addMode && !editMode">
+        <h4>Sabers</h4>
+        <div class="panel panel-default" *ngFor="let saber of sabers">
+            <div class="panel-body">
+                <div class="row inventory-item">
+                    <div class="col-xs-7 col-sm-4">
+                        <h5>Name</h5>
+                        <div>{{saber.name}}</div>
+                    </div>
+                    <div class="col-xs-5 col-sm-4">
+                        <h5>Available</h5>
+                        <div>{{saber.available}}</div>
+                    </div>
+                    <div class="col-xs-6 col-sm-4">
+                        <button type="button" class="btn btn-primary details" (click)="switchToEditMode(saber)">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

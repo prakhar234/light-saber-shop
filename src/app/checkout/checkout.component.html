@@ -1,0 +1,148 @@
+<div class="checkout">
+    <app-alert [message]="orderError" *ngIf="orderError" (close)="onHandleError()"></app-alert>
+    <div class="panel panel-default" *ngIf="!contactFormSubmitted">
+        <div class="panel-heading">
+            <h4>Contact Details</h4>
+        </div>
+        <div class="panel-body">
+            <form #contactForm="ngForm" (submit)="onSubmitContact()" class="form" >
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                class="form-control"
+                                ngModel
+                                name="email"
+                                #email="ngModel"
+                                email
+                                required />
+                            <p class="error-message" *ngIf="email.touched && email.errors?.required">Please enter email Id!</p>
+                            <p class="error-message" *ngIf="email.touched && email.errors?.email">Please enter a valid e-mail address!</p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="form-group">
+                            <label for="phone">Phone No</label>
+                            <input 
+                                type="number" 
+                                id="phoneNo" 
+                                class="form-control"
+                                ngModel
+                                name="phoneNo"
+                                #phone="ngModel"
+                                required />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                        <div class="form-group">
+                            <label for="postalCode">Postal Code</label>
+                            <input 
+                                type="text" 
+                                id="postalCode" 
+                                class="form-control"
+                                ngModel
+                                name="postalCode"
+                                #postalCode="ngModel"
+                                required />
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <div class="form-group">
+                            <label for="street">Street</label>
+                            <input 
+                                type="text" 
+                                id="street" 
+                                class="form-control"
+                                ngModel
+                                name="street"
+                                #street="ngModel"
+                                required />
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-4">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input 
+                                type="text" 
+                                id="city" 
+                                class="form-control"
+                                ngModel
+                                name="city"
+                                #city="ngModel"
+                                required />
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="error">
+                    <div class="col-xs-12 col-sm-4">
+                        <p class="error-message">Please enter contact details!</p>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-xs-12 button-container">
+                        <button *ngIf="contactForm.form.valid" type="submit" class="btn btn-primary">Submit</button>
+                        <button *ngIf="contactForm.form.invalid" [disabled]="contactForm.form.invalid" type="submit" class="btn btn-disabled">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="panel panel-default" *ngIf="orderData && contactFormSubmitted">
+        <div class="panel-heading">
+            <h4>Order Summary</h4>
+        </div>
+        <div class="panel-body">
+            <div class="checkout-details" *ngIf="orderData">
+                <div class="checkout-detail">
+                    <h5>Saber Name: </h5>
+                    <div>{{ orderData.saberName}}</div>
+                </div>
+                <div class="checkout-detail">
+                    <h5>Saber Color: </h5>
+                    <div>{{ orderData.saberColor}}</div>
+                </div>
+                <div class="checkout-detail">
+                    <h5>Saber Crystal: </h5>
+                    <div>{{ orderData.saberCrystal}}</div>
+                </div>
+                <div class="checkout-detail">
+                    <h5>Cost: </h5>
+                    <div>{{ orderData.cost + "Cr"}}</div>
+                </div>
+                <h4>Contact Details: </h4>
+                <hr />
+                <div class="checkout-detail">
+                    <h5>Email: </h5>
+                    <div>{{ orderData.contactDetails.email}}</div>
+                </div>
+                <div class="checkout-detail">
+                    <h5>Phone: </h5>
+                    <div>{{ orderData.contactDetails.phoneNo}}</div>
+                </div>
+                <div class="checkout-detail">
+                    <h5>Postal Code: </h5>
+                    <div>{{ orderData.contactDetails.postalCode}}</div>
+                </div>
+                <div class="checkout-detail">
+                    <h5>Street: </h5>
+                    <div>{{ orderData.contactDetails.street}}</div>
+                </div>
+                <div class="checkout-detail">
+                    <h5>City: </h5>
+                    <div>{{ orderData.contactDetails.city}}</div>
+                </div>
+                <div class="button-container">
+                    <button type="button" class="btn btn-success" (click)="handleOrder()">Confirm order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

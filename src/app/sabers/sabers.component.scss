@@ -1,0 +1,13 @@
+@import "../../styles//variables.scss";
+
+.sabers {
+  &-item {
+    div h5 {
+      font-weight: 700;
+    }
+
+    .details {
+      margin-top: $gutter - 5;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+@import "../../styles//variables.scss";
+
+.inventory {
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    button {
+      display: inline-block;
+      &:not(:first-of-type) {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  &-detail {
+    display: flex;
+    justify-content: space-between;
+
+    h5 {
+      font-weight: 700;
+    }
+  }
+
+  &-item {
+    div h5 {
+      font-weight: 700;
+    }
+
+    .details {
+      margin-top: $gutter - 5;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+<div class="form-group">
+    <label for="email">Enter your age to check force needed to use a saber:</label>
+    <input placeholder="12" type="number" id="age" class="form-control" name="age" [(ngModel)]="age">
+</div>
+<div class="form-group">
+    <button type="button" class="btn btn-success" (click)="checkForce()">Check Force</button>
+</div>
+<div class="alert alert-success" role="alert" *ngIf="force">
+    <span *ngIf="isPadawan">You have a force of {{force + "F"}}. Please choose accordingly.</span>
+    <span *ngIf="!isPadawan && !unlimitedForce">Welcome Jedi! You have a force of {{force + "F"}}.</span>
+    <span *ngIf="!isPadawan && unlimitedForce">Welcome Jedi! You have unlimited Force. You can choose any saber</span>
+</div>
+<h3>Sabers</h3>
+<div *ngFor="let saber of sabers" class="panel panel-default sabers">
+    <div class="panel-body">
+        <div class="row sabers-item">
+            <div class="col-xs-7 col-sm-4">
+                <h5>Name</h5>
+                <div>{{saber.name}}</div>
+            </div>
+            <div class="col-xs-5 col-sm-4">
+                <h5>Force</h5>
+                <div>{{saber.crystal.powerUsage + "F"}}</div>
+            </div>
+            <div class="col-xs-6 col-sm-4">
+                <button type="button" class="btn btn-primary details" (click)="showDetail(saber.id)">{{saber.showDetail ? 'Hide' : 'Show'}} <span class="caret"></span></button>
+            </div>
+        </div>
+        <div *ngIf="saber.showDetail" class="row saber-item">
+           <app-saber [saber]="saber"></app-saber>
+        </div>
+    </div>
+</div>

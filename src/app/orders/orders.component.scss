@@ -1,0 +1,17 @@
+@import "../../styles/variables.scss";
+
+.orders {
+  &-item {
+    div h5 {
+      font-weight: 700;
+    }
+
+    .details {
+      display: inline-block;
+      margin-top: $gutter - 5;
+      &:not(:first-of-type) {
+        margin-left: 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+    "sabers": [
+        {
+            "id":0,
+            "name":"Sith Saber",
+            "available":27,
+            "crystal":{
+                "name":"Kadril saber",
+                "color":"red",
+                "planet":13,
+                "powerUsage": 80
+            }
+        },
+        {
+            "id":1,
+            "name":"Master Jedi Saber",
+            "available":13,
+            "crystal":{
+                "name":"Obi Wan saber",
+                "color":"green",
+                "planet":12,
+                "powerUsage": 20  
+            }
+        },
+        {
+            "id":2,
+            "name":"Dark Saber",
+            "available":13,
+            "crystal":{
+                "name":"Dragite Gem",
+                "color":"Black",
+                "planet":145,
+                "powerUsage": 70
+            }
+        },
+        {
+            "id":3,
+            "name": "Ashoka Tano LightSaber",
+            "available":5,
+            "crystal":{
+                "name":"Kimber Stone",
+                "color":"white",
+                "planet": 8,
+                "powerUsage": 65
+            }
+        },
+        {
+            "id":4,
+            "name":"Skywalker",
+            "available":13,
+            "crystal":{
+                "name":"Tainted Nightsister",
+                "color":"green",
+                "planet":10,
+                "powerUsage": 20
+            }
+        },
+        {
+            "id":5,
+            "name":"Broad lightsaber",
+            "available":13,
+            "crystal":{
+                "name":"Solary",
+                "color":"green",
+                "planet":12,
+                "powerUsage": 95
+            }
+        }
+    ]
+}
