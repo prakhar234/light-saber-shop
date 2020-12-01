@@ -7,7 +7,7 @@
             <a routerLink="/" class="navbar-brand">Saber Shop</a>
         </div>
         <div class="navbar-collapse" [class.collapse]="!collapsed" (window:resize)="collapsed = true">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav all-links">
                 <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"><a routerLink="/">Sabers</a></li>
                 <li routerLinkActive="active" *ngIf="!isAuthenticated"><a routerLink="/login">Admin</a></li>
             </ul>
